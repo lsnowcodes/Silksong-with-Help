@@ -8,7 +8,5 @@ using UnityEngine;
 namespace SilksongWithHelp
 {
     // This class only exists to determine that the button is a help button
-    public class HelpButtonMarker : MonoBehaviour
-    {
-    }
+    public class HelpButtonMarker : MonoBehaviour { }
 }

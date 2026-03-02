@@ -1,34 +1,27 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
-using GlobalEnums;
 using HarmonyLib;
 using SilksongWithHelp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using SilksongWithHelp.HelpButtonFunctionality;
 
 // Main class
 
 [BepInPlugin("com.lsnowcodes.silksongwithhelp", "Silksong with Help", "1.0.0")]
 public class ModHandler : BaseUnityPlugin
 {
-    internal static ManualLogSource Log;
+    public static ManualLogSource Log;
     private void Awake()
     {
-        Log = base.Logger;
+        Log = Logger;
 
-
-        Logger.LogInfo("Plugin loaded and initialized...");
+        Log.LogInfo("Plugin loaded and initialized...");
             
         Harmony.CreateAndPatchAll(typeof(ModHandler));
-        Harmony.CreateAndPatchAll(typeof(HelpButtonCreation));
-        Harmony.CreateAndPatchAll(typeof(HelpButtonPostCreation));
+        Harmony.CreateAndPatchAll(typeof(Creation));
+        Harmony.CreateAndPatchAll(typeof(PostFix));
+        Harmony.CreateAndPatchAll(typeof(Prefix));
 
-        Logger.LogInfo("Loaded!");
+        Log.LogInfo("Loaded!");
 
     }
 

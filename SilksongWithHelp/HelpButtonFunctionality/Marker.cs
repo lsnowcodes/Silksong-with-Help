@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace SilksongWithHelp
+namespace SilksongWithHelp.HelpButtonFunctionality
 {
     // This class only exists to determine that the button is a help button
-    public class HelpButtonMarker : MonoBehaviour { }
+    public class Marker : MonoBehaviour { }
 }

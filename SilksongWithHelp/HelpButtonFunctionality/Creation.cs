@@ -4,10 +4,10 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SilksongWithHelp
+namespace SilksongWithHelp.HelpButtonFunctionality
 {
     [HarmonyPatch(typeof(UIManager))]
-    public static class HelpButtonCreation
+    public static class Creation
     {
         [HarmonyPrefix]
         [HarmonyPatch(nameof(UIManager.ShowMenu))]
@@ -26,7 +26,7 @@ namespace SilksongWithHelp
         private static void TryAddHelpButton(MenuScreen menu)
         {
             // Already exists? Exit.
-            if (menu.GetComponentInChildren<HelpButtonMarker>(true) != null)
+            if (menu.GetComponentInChildren<Marker>(true) != null)
                 return;
 
             MenuButtonList list = menu.GetComponent<MenuButtonList>();
@@ -39,19 +39,19 @@ namespace SilksongWithHelp
 
             // Clone (inactive is fine, SetupActive will handle visibility)
             GameObject clone = UnityEngine.Object.Instantiate(template.gameObject, template.transform.parent);
-            clone.name = "HelpButton";
+            clone.name = "Help";
 
             // Marker
-            clone.AddComponent<HelpButtonMarker>();
+            clone.AddComponent<Marker>();
 
             // Behavior
-            var func = clone.AddComponent<HelpButtonFunc>();
-            func.flashEffect = clone.GetComponent<Animator>();
+            var func = clone.AddComponent<Function>();
+            //func.flashEffect = clone.GetComponent<Animator>();
 
             // Label
-            Text label = clone.GetComponentInChildren<Text>(true);
-            if (label != null)
-                label.text = "Help";
+            //Text label = clone.GetComponentInChildren<Text>(true);
+            //if (label != null)
+            //    label.text = "Help";
 
             // Insert BEFORE SetupActive runs
             AddToButtonList(list, clone.GetComponent<PauseMenuButton>());
